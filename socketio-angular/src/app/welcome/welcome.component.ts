@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'environment';
 
 @Component({
   selector: 'app-welcome',
@@ -8,8 +9,14 @@ import { Component } from '@angular/core';
 export class WelcomeComponent {
 
   constructor(){
+    
      setTimeout (() => {
-         window.location.href = 'http://localhost:4200/login';
+      if(environment.production == false){
+                 window.location.href = 'http://localhost:4200/login';
+      }
+      else{
+        window.location.href = 'https://chatapp-c.vercel.app/login'
+      }
       }, 5000);
   }
 }
