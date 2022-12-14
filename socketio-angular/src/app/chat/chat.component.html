@@ -1,0 +1,50 @@
+<div style="width: 100%; height: 100vh;" class="row-center">
+  <div style="width: 400px; height: 600px;" class="wrapper">
+    <div *ngFor="let user of users">
+      <div
+        style="
+          height: 30px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        "
+        *ngIf="user.username!=name"
+        (click)="updateSelectedUser(user)"
+      >
+        {{user.username}}
+      </div>
+    </div>
+  </div>
+  <div style="width: 400px; height: 600px;" class="wrapper">
+    <div class="col-center" style="height: 10%;">
+      <div style="font-weight: bold; font-size: 20px; padding: 10px;">
+        {{selectedUser}}
+      </div>
+      <div style="font-weight: lighter; font-size: 15px;">{{todayString}}</div>
+    </div>
+    <div style="height: 90%;">
+      <div style="height: 91%;">
+        <div class="chat-box">
+          <div *ngIf="isSelected==true">
+            <div
+              class="message-box"
+              *ngFor="let message of messages; let i = index"
+            >
+              <div [ngClass]="message.fromSelf == true ? 'black' : 'green'">
+                <strong>{{message.data.name}}:</strong> {{message.data.message}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-center">
+        <section>
+          <textarea
+            [(ngModel)]="message"
+            placeholder="say hi!"
+            (keyup.enter)="sendMessage()"
+          ></textarea>
+          <button (click)="sendMessage()" mat-raised-button>Send</button>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
