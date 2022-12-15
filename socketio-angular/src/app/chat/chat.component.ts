@@ -28,7 +28,7 @@ message:any;
     setTimeout (() => {
          this.startSocket();
       }, 10000);
-     this.getUsers();
+    // this.getUsers();
      
   }
   getUsers(){
