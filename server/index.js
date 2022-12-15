@@ -2,6 +2,7 @@ const app = require("express")();
 const express = require("express");
 const http = require("http").createServer(app);
 const cors = require("cors");
+app.use(express.json());
 app.use(
   cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
@@ -12,15 +13,11 @@ const io = require("socket.io")(http, {
     origins: ["https://chatapp-c.vercel.app/"],
   },
 });
+
 const mongoose = require("mongoose");
 const user = require("./src/routes/user");
 const { User } = require("./src/models/user");
-app.use(express.json());
-app.use(
-  cors({
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-  })
-);
+
 //database connection
 mongoose
   .connect(
