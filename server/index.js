@@ -18,7 +18,13 @@ app.use(
 );
 //database connection
 mongoose
-  .connect("mongodb://0.0.0.0:27017/chatapp")
+  .connect(
+    "mongodb+srv://newuser:newuser@socialmedia.emihq.mongodb.net/notes_app?retryWrites=true&w=majority",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }
+  )
   .then(() => {
     console.log("database connected");
   })

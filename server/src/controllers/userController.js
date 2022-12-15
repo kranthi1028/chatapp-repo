@@ -22,6 +22,9 @@ exports.add_user = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     // console.log(req.body);
+    user = new User(_.pick(req.body, ["username"]));
+    console.log("data", user);
+    await user.save();
     let user = await User.findOne({ username: req.body.username });
     if (user) {
       return res
