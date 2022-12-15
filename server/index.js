@@ -2,9 +2,14 @@ const app = require("express")();
 const express = require("express");
 const http = require("http").createServer(app);
 const cors = require("cors");
+app.use(
+  cors({
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
 const io = require("socket.io")(http, {
   cors: {
-    origins: ["http://localhost:4200"],
+    origins: ["https://chatapp-c.vercel.app/"],
   },
 });
 const mongoose = require("mongoose");
